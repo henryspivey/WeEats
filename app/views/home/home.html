@@ -1,6 +1,6 @@
 <header>
-  <div class="logo"></div>
-  <nav>
+ <a href="#/home"><div class="logo"></div></a>
+  <nav class="headerNav">
     <ul>
       <li><a href="#/auth" ng-if="!user">Login</a></li>
      	<li><a href="#/home" ng-if="user">Welcome, {{user.username}}!</a></li>
@@ -8,5 +8,30 @@
     </ul>
   </nav>
 </header>
+
+<section class="orderContainer">
+	<div id="restaurantInfo">
+		<ul class="list-inline">
+		  <li>Name of restaurant</li>
+		  <li>Phone</li>
+		  <li>Website</li>
+		  <li>Order time</li>
+		</ul>
+	</div>
+	
+	<div id="orderMenu">Menu goes here</div>
+	<div id="orderForm">
+		<form class="form-horizontal">
+		  <div class="form-group">
+		    <label for="orderTextarea" class="col-md-6">Order Details</label>
+		      <textarea class="form-control" rows="3" type="text" id="orderTextarea" placeholder="Write your order here please..." ng-model="order"></textarea>
+		  </div>
+		  <button type="button" class="btn btn-success btn-lg btn-block">Submit Order</button>
+
+		</form>
+
+	</div>
+
+</section>
 
 

@@ -24,7 +24,7 @@ header{
 
 }
 
-nav{
+.headerNav{
   color:#ddd;
   text-align:right;
   /*padding: 10px 0;
@@ -194,14 +194,25 @@ nav a:hover {
   color:#2b3337;
 }
 
+#orderMenu {
+  width: 65%;
+  display: inline-block;
+  vertical-align: top;
+}
+#orderForm {
+  width: calc(100% - 75%); /*will introduce padding*/
+  display: inline-block;
+  vertical-align: middle;
+}
+#orderForm label {
+  font-size: 18px;
+}
 
-
-
-
-
-
-
-
+#restaurantInfo .list-inline {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
 
 
 

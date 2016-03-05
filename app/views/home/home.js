@@ -10,10 +10,14 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 	var authData = firebaseUsersRef.getAuth();
 	var userRef= new Firebase(FIREBASE_ROOT+'/'+authData.uid);
 	$scope.user = $firebaseObject(userRef); // make the user information available to the scope
-	console.log($scope.user);
+	$scope.order = "";
 
 	$scope.logout = function() {
 		AuthService.logout();
+	}
+
+	$scope.submitOrder = function() {
+
 	}
 
 
