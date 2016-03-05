@@ -24,21 +24,21 @@ angular.module("WeEats.controllers").controller("AuthCtrl",
 			  } else {
 			    console.log("Successfully created user account with uid:", userData.uid);
 			    SlackAuthService.authorize();
-			    login($scope.user.email, $scope.user.password);
+			    $scope.login($scope.user.email, $scope.user.password);
 			  }
 			});
 		}
 
-		function login(email, password) {
+		$scope.login = function(email, password) {
 			userRef.authWithPassword({
-			  email    : email,
-			 	password : password
+			  email    : $scope.user.email,
+			 	password : $scope.user.password
 			}, function(error, authData) {
 			  if (error) {
 			    console.log("Login Failed!", error);
 			  } else {
 			    console.log("Authenticated successfully with payload:", authData);
-			    
+			    $location.path('/home');
 			    if(!$scope.$$phase) $scope.$apply();
 			  }
 			});
