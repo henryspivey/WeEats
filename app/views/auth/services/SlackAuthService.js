@@ -1,8 +1,8 @@
 "use strict";
 
 angular.module("WeEats.services").factory("SlackAuthService", 
-	['$routeParams','$http', 'slackSvc', 'FIREBASE_ROOT',
-	function ($routeParams, $http, slackSvc, FIREBASE_ROOT){
+	['$routeParams','$http', 'slackSvc', 'FIREBASE_ROOT', '$location',
+	function ($routeParams, $http, slackSvc, FIREBASE_ROOT, $location){
 
 	var firebaseUsersRef = new Firebase(FIREBASE_ROOT);
 
@@ -49,6 +49,7 @@ angular.module("WeEats.services").factory("SlackAuthService",
 				}).then(function successCallback(response){
 						console.log("Success ", response);
 						userRef.update({"access_token":access_token, "webhookURL":webhookURL, username:response.data.user});
+						$location.path("/home");
 				}, function errorCallback(response){
 					console.log("error ", response);
 				});
