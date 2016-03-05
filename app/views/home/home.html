@@ -1,0 +1,12 @@
+<header>
+  <div class="logo"></div>
+  <nav>
+    <ul>
+      <li><a href="#/auth" ng-if="!user">Login</a></li>
+     	<li><a href="#/home" ng-if="user">Welcome, {{user.username}}!</a></li>
+     	<li ng-click="logout()"><a href="#/auth">Logout</a></li>
+    </ul>
+  </nav>
+</header>
+
+
