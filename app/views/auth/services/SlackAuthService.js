@@ -6,10 +6,7 @@ angular.module("WeEats.services").factory("SlackAuthService",
 
 	var firebaseUsersRef = new Firebase(FIREBASE_ROOT);
 
-	var authData = firebaseUsersRef.getAuth(); // retrieves the current user, use authData.uid for storing the slack information
-	console.log(authData);
-
-	var userRef = new Firebase(FIREBASE_ROOT+'/'+authData.uid);
+	
 	var config = {
 		client_id: '23324292563.23327735669',
 		client_secret: 'f75c945c04460239fdbdc9b5be119a83',
@@ -29,6 +26,11 @@ angular.module("WeEats.services").factory("SlackAuthService",
 	}
 	
 	function access() {
+
+		var authData = firebaseUsersRef.getAuth(); // retrieves the current user, use authData.uid for storing the slack information
+		console.log(authData);
+
+		var userRef = new Firebase(FIREBASE_ROOT+'/'+authData.uid);
 		if ($routeParams) {
 		config.code = $routeParams.code;
 

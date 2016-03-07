@@ -1,8 +1,8 @@
 "use strict";
 
 angular.module("WeEats.services").service("AuthService", 
-	['$routeParams','$http', 'FIREBASE_ROOT', '$q',
-	function ($routeParams, $http, FIREBASE_ROOT, $q){
+	['$routeParams','$http', 'FIREBASE_ROOT', '$q', '$location',
+	function ($routeParams, $http, FIREBASE_ROOT, $q, $location){
 
 	var firebaseUsersRef = new Firebase(FIREBASE_ROOT);
 

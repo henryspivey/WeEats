@@ -23,7 +23,7 @@ angular.module("WeEats.controllers").controller("AuthCtrl",
 			    console.log("Error creating user:", error);
 			  } else {
 			    console.log("Successfully created user account with uid:", userData.uid);
-			    SlackAuthService.authorize();
+			    //SlackAuthService.authorize();
 			    $scope.login($scope.user.email, $scope.user.password);
 			  }
 			});
@@ -38,7 +38,7 @@ angular.module("WeEats.controllers").controller("AuthCtrl",
 			    console.log("Login Failed!", error);
 			  } else {
 			    console.log("Authenticated successfully with payload:", authData);
-			    $location.path('/home');
+			    $location.path('/view1');
 			    if(!$scope.$$phase) $scope.$apply();
 			  }
 			});
