@@ -38,6 +38,7 @@ angular.module("WeEats.controllers").controller("AuthCtrl",
 			    console.log("Login Failed!", error);
 			  } else {
 			    console.log("Authenticated successfully with payload:", authData);
+			
 			    $location.path('/view1');
 			    if(!$scope.$$phase) $scope.$apply();
 			  }
