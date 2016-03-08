@@ -3,7 +3,7 @@
 /*
 	This script will handle the user authentication and login
 */
-angular.module("WeEats.controllers").controller("AuthCtrl", 
+angular.module("WeEats.controllers").controller("AdminAuthCtrl", 
 	['FIREBASE_ROOT', '$scope', '$location', 'SlackAuthService',
 	function (FIREBASE_ROOT, $scope, $location, SlackAuthService){
 
@@ -23,6 +23,7 @@ angular.module("WeEats.controllers").controller("AuthCtrl",
 			    console.log("Error creating user:", error);
 			  } else {
 			    console.log("Successfully created user account with uid:", userData.uid);
+			    //SlackAuthService.authorize();
 			    $scope.login($scope.user.email, $scope.user.password);
 			  }
 			});
@@ -37,8 +38,9 @@ angular.module("WeEats.controllers").controller("AuthCtrl",
 			    console.log("Login Failed!", error);
 			  } else {
 			    console.log("Authenticated successfully with payload:", authData);
-			    SlackAuthService.authorize();
-			    $location.path('/home'); // redirect to home after user is created and signed in and slack has been added
+			    userRef = new Firebase(FIREBASE_ROOT + '/'+ authData.uid);
+					userRef.update({"isAdmin":true});
+			    $location.path('/view1');
 			    if(!$scope.$$phase) $scope.$apply();
 			  }
 			});

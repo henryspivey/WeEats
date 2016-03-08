@@ -214,6 +214,10 @@ nav a:hover {
   font-weight: bold;
 }
 
+#adminRestaurantForm {
+  width: 65%;
+}
+
 
 
 

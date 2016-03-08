@@ -23,9 +23,17 @@ angular.module('WeEats.view1', ['ngRoute'])
 		userRef = new Firebase(FIREBASE_ROOT+'/'+authData.uid);
 		var userObj = $firebaseObject(userRef);
 		userObj.$loaded(function(data){
-			if(data.access_token) {
+			console.log(data);
+			if(data.access_token && data.isAdmin) {
+
+				$location.path("/dash");
+				if(!$scope.$$phase) $scope.$apply();
+
+			} else if(data.access_token) {
+
 				$location.path("/home");
 				if(!$scope.$$phase) $scope.$apply();
+
 			}
 		})
 	};
@@ -45,8 +53,6 @@ angular.module('WeEats.view1', ['ngRoute'])
 		slackSvc.authorize(config.client_id, config.authParams, function (response) {
 			console.log(response)
 		});
-
-
 	}
 		
 }]);
