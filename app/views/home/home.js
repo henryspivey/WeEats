@@ -10,6 +10,27 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 	var authData = firebaseUsersRef.getAuth();
 	var userRef= new Firebase(FIREBASE_ROOT+'/'+authData.uid);
 	$scope.user = $firebaseObject(userRef); // make the user information available to the scope
+
+	// TOOD make a firebase object of the restaurant reference in firebase
+	$scope.restaurantData = {
+		name: "",
+		phone: "",
+		website:"",
+		orderTime:""
+	}
+
+	var restaurantRef = new Firebase(FIREBASE_ROOT + '/restaurant');
+	$scope.restaurantObj = $firebaseObject(restaurantRef);
+	if($scope.restaurantObj != 'undefined') {
+		$scope.restaurantObj.$loaded(function(restaurantData) {
+			$scope.restaurantData.name = restaurantData.restaurantName;
+			$scope.restaurantData.phone = restaurantData.restaurantPhone;
+			$scope.restaurantData.website = restaurantData.restaurantURL;
+			$scope.restaurantData.orderTime = restaurantData.orderTime;
+		});
+	}
+
+
 	var config = {
 		client_id: '23324292563.23327735669',
 		client_secret: 'f75c945c04460239fdbdc9b5be119a83',
@@ -21,12 +42,18 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 	}
 	$scope.order = "";
 
+
+
 	$scope.logout = function() {
 		AuthService.logout();
 	}
 
 	$scope.submitOrder = function() {
-
+		//TODO 
+		/* 
+			gather date and time for key (this will be needed for record keeping)
+			store data as value to key
+		*/
 	}
 
 	function init() {

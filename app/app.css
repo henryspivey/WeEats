@@ -216,10 +216,18 @@ nav a:hover {
 
 #adminRestaurantForm {
   width: 65%;
+  margin:0 auto;
 }
 
 
+/*input#menuURL.ng-invalid {
+  border: 1px red solid;
+}
 
+input#menuURL.ng-valid{
+  border: 1px green solid;
+}
+*/
 
 
 

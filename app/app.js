@@ -7,7 +7,12 @@ var WeEats = angular.module('WeEats', [
   'Deg.SlackApi',
   'WeEats.controllers',
   'WeEats.services',
-  'firebase' // loads $firebaseObject
+  'firebase',// loads $firebaseObject
+  'ngMaterial', 
+  'ngMessages',
+  'ui.bootstrap', 
+  'ui.bootstrap.datetimepicker'
+
 ]).
 config(['$routeProvider', function($routeProvider) {
 
