@@ -35,10 +35,6 @@ config(['$routeProvider', function($routeProvider) {
 		when('/admin', {
 			templateUrl:"views/auth/adminAuth.html",
 			controller: "AdminAuthCtrl"
-		}).
-		when('/dash', {
-			templateUrl: "views/dash/dash.html",
-			controller: "DashCtrl"
 		})
 
   //$routeProvider.otherwise({redirectTo: '/view1'});

@@ -215,21 +215,39 @@ nav a:hover {
 }
 
 #adminRestaurantForm {
-  width: 65%;
-  margin:0 auto;
+     width: 65%;
+    left: 10%;
+    
+}
+
+.container {
+  display:inline-flex;
+
+}
+
+.formanduserlist{
+  left: 10%;
+  position: relative;
+  width: 100%;
+  display: inline-flex;
+}
+
+.userList {
+  width: 25%;
+  left: 10%;
+  position: relative;
+}
+
+.userList header {
+  text-align: center;
+  font-weight: bold;
+  font-size:16px;
 }
 
 
-/*input#menuURL.ng-invalid {
-  border: 1px red solid;
-}
-
-input#menuURL.ng-valid{
-  border: 1px green solid;
-}
-*/
-
-
+/* styles for later for the icon depending on order status color: greenyellow;
+padding: 5px;
+vertical-align: baseline;*/
 
 
 
