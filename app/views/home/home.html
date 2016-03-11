@@ -15,18 +15,19 @@
 	</div>
 
 	<div class="orderContainer">
+    <form name="orderForm">
 		 <div class="form-group">
        <label for="comment">Place your order here:</label>
-       <textarea class="form-control" rows="5" id="comment" ng-model="order" placeholder="I'm hungry for..."></textarea>
+       <textarea class="form-control" rows="5" id="comment" ng-model="order" placeholder="I'm hungry for..." required></textarea>
      </div>
 
      <ul class="list-inline" id="restaurantInfo">
-       <li>restaurant phone</li>
-       <li>restaurant website</li>
+       <li>{{restaurantData.phonenumber | tel}}</li>
+       <li>{{restaurantData.website}}</li>
      </ul>
 
-     <div class="btn btn-block btn-lg btn-success">Submit Order!</div>
-
+     <div class="btn btn-block btn-lg btn-success" ng-disabled="orderForm.$invalid">Submit Order!</div>
+   </form>
 	</div>
 
 </section>
@@ -35,7 +36,7 @@
 <section class="container" ng-if="user.isAdmin">
   <div class="formanduserlist">
 <form class="form-horizontal" id="adminRestaurantForm" name="adminRestaurantForm">
-  <div class="form-group" ng-class="{true: 'error'}[submitted && adminRestaurantForm.restaurantName.$invalid && adminRestaurantForm.menuURL.$invalid && adminRestaurantForm.restaurantURL.$invalid]">
+  <div class="form-group" ng-class="{true: 'error'}[submitted && adminRestaurantForm.restaurantName.$invalid && adminRestaurantForm.menuURL.$invalid && adminRestaurantForm.restaurantURL.$invalid && adminRestaurantForm.restaurantPhone.$invalid]">
     <label for="name" class="col-sm-2 control-label">Restaurant Name</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" id="name" placeholder="Restaurant Name" name="restaurantName" ng-model="restaurantData.name" required/>
@@ -54,8 +55,10 @@
   <div class="form-group">
     <label for="phone" class="col-sm-2 control-label">Restaurant Phone</label>
     <div class="col-sm-10">
-      <input type="tel" class="form-control" id="phone" placeholder="Restaurant Phone" name="restaurantPhone" ng-model="restaurantData.phone">
-      
+      <input type="tel" class="form-control" id="phone" phone-input placeholder="Restaurant Phone" name="restaurantPhone" ng-model="restaurantData.phone" required>
+      <!-- <input class="input-phone" type='text'  ng-model="phoneVal"/> -->
+      <span class="help-inline" ng-show="submitted && adminRestaurantForm.restaurantPhone.$error.required">Required</span>
+      <span class="help-inline" ng-show="submitted && adminRestaurantForm.restaurantPhone.$error.phone">Invalid Phone</span>
     </div>
   </div>
   <div class="form-group">

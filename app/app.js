@@ -11,7 +11,8 @@ var WeEats = angular.module('WeEats', [
   'ngMaterial', 
   'ngMessages',
   'ui.bootstrap', 
-  'ui.bootstrap.datetimepicker'
+  'ui.bootstrap.datetimepicker',
+  'telephonefilter'
 
 ]).
 config(['$routeProvider', function($routeProvider) {

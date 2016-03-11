@@ -36,6 +36,9 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 	if($scope.restaurantObj != 'undefined') {
 		$scope.restaurantObj.$loaded(function(restaurantData) {
 			$scope.restaurantData.timeToOrder = restaurantData.orderTime;
+			$scope.restaurantData.name = restaurantData.restaurantName;
+			$scope.restaurantData.phonenumber = restaurantData.restaurantPhone;
+			$scope.restaurantData.website = restaurantData.restaurantURL;
 		});
 	}
 

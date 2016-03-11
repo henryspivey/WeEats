@@ -8,7 +8,10 @@ header{
   padding: 5px 0 0 0; /* top -> clockwise */
   width: 100%;
   width: 80%;
+}
 
+header a:hover {
+  text-decoration: none;
 }
 
 .logo {
