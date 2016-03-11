@@ -194,19 +194,6 @@ nav a:hover {
   color:#2b3337;
 }
 
-#orderMenu {
-  width: 65%;
-  display: inline-block;
-  vertical-align: top;
-}
-#orderForm {
-  width: calc(100% - 75%); /*will introduce padding*/
-  display: inline-block;
-  vertical-align: middle;
-}
-#orderForm label {
-  font-size: 18px;
-}
 
 #restaurantInfo .list-inline {
   text-align: center;
@@ -214,14 +201,20 @@ nav a:hover {
   font-weight: bold;
 }
 
-#adminRestaurantForm {
-     width: 65%;
-    left: 10%;
-    
+#adminRestaurantForm{
+  width: 65%;
+  left: 10%;
 }
 
-.container {
+.menuContainer {
+  width: 45%;
+  left:5%;
+  position: relative;
+}
+
+.container, .order {
   display:inline-flex;
+  width: 100%;
 
 }
 
@@ -236,6 +229,7 @@ nav a:hover {
   width: 25%;
   left: 10%;
   position: relative;
+  text-align: center;
 }
 
 .userList header {
@@ -244,6 +238,12 @@ nav a:hover {
   font-size:16px;
 }
 
+
+.orderContainer {
+  width: 35%;
+  left:10%;
+  position: relative;
+}
 
 /* styles for later for the icon depending on order status color: greenyellow;
 padding: 5px;

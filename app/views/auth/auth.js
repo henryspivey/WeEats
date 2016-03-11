@@ -36,25 +36,25 @@ angular.module("WeEats.controllers").controller("AuthCtrl",
 			}, function(error, authData) {
 			  if (error) {
 			    console.log("Login Failed!", error);
-			  }
-			  else {
+			  } else {
 			    console.log("Authenticated successfully with payload:", authData);
-			    alert(authData.uid);
-					if(authData.uid) {
-						userRef = new Firebase(FIREBASE_ROOT+"/users/"+authData.uid);
-						var userObj = $firebaseObject(userRef);
-
-						if (userObj.access_token) { // they have already added slack
-							$location.path("/home");
-							if(!$scope.$$phase) $scope.$apply();
-						} else {
-							$location.path("/view1");
-							if(!$scope.$$phase) $scope.$apply();
-						}
-					} else {
-						$location.path('/view1');
-					}
-			    
+	    		if(authData.uid) {
+	    			userRef = new Firebase(FIREBASE_ROOT+"/users/"+authData.uid);
+	    			var userObj = $firebaseObject(userRef);	
+	    			console.log(userObj);
+	    			userObj.$loaded(function(data){
+	    				if (userObj.access_token) { // they have already added slack
+	    					$location.path("/home");
+	    					if(!$scope.$$phase) $scope.$apply();
+	    				} else {
+	    					$location.path("/view1");
+	    					if(!$scope.$$phase) $scope.$apply();
+	    				}
+	    			})
+	    			
+	    		} else {
+	    			$location.path('/view1');
+	    		}
 			  }
 			});
 		}

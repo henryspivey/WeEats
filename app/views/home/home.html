@@ -9,33 +9,32 @@
   </nav>
 </header>
 
-<!-- <section class="orderContainer">
-	<div id="restaurantInfo">
-		<ul class="list-inline">
-		  <li>{{restaurantData.name}}</li>
-		  <li>{{restaurantData.phone}}</li>
-		  <li>{{restaurantData.website}}</li>
-		  <li>{{restaurantData.orderTime}}</li>
-		</ul>
+<section class="order" ng-if="!user.isAdmin">
+	<div class="menuContainer">
+		Menu goes here
 	</div>
-	
-	<div id="orderMenu">Menu goes here</div>
-	<div id="orderForm">
-		<form class="form-horizontal">
-		  <div class="form-group">
-		    <label for="orderTextarea" class="col-md-6">Order Details</label>
-		      <textarea class="form-control" rows="3" type="text" id="orderTextarea" placeholder="Write your order here please..." ng-model="order"></textarea>
-		  </div>
-		  <button type="button" class="btn btn-success btn-lg btn-block">Submit Order</button>
 
-		</form>
+	<div class="orderContainer">
+		 <div class="form-group">
+       <label for="comment">Place your order here:</label>
+       <textarea class="form-control" rows="5" id="comment" ng-model="order" placeholder="I'm hungry for..."></textarea>
+     </div>
+
+     <ul class="list-inline" id="restaurantInfo">
+       <li>restaurant phone</li>
+       <li>restaurant website</li>
+     </ul>
+
+     <div class="btn btn-block btn-lg btn-success">Submit Order!</div>
 
 	</div>
 
-</section> -->
-<section class="container">
+</section>
+
+
+<section class="container" ng-if="user.isAdmin">
   <div class="formanduserlist">
-<form class="form-horizontal" id="adminRestaurantForm" name="adminRestaurantForm" ng-if='user.isAdmin'>
+<form class="form-horizontal" id="adminRestaurantForm" name="adminRestaurantForm">
   <div class="form-group" ng-class="{true: 'error'}[submitted && adminRestaurantForm.restaurantName.$invalid && adminRestaurantForm.menuURL.$invalid && adminRestaurantForm.restaurantURL.$invalid]">
     <label for="name" class="col-sm-2 control-label">Restaurant Name</label>
     <div class="col-sm-10">
@@ -102,7 +101,7 @@
 
 <section class="userList">
   <header>Users</header>
-  <ul class="list-inline">
+  <ul class="list-unstyled">
     <li ng-repeat="user in allUsers">{{user.username}}</li>
     <!-- <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> -->
   </ul>
