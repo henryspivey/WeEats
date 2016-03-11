@@ -17,26 +17,6 @@ angular.module('WeEats.view1', ['ngRoute'])
 	var authData = userRef.getAuth();
 	console.log(authData);
 
-	// check if access_token already exists in user obj.  
-	// if it does then send them to home since Slack has already been added
-	if (authData) {
-		userRef = new Firebase(FIREBASE_ROOT+'/'+authData.uid);
-		var userObj = $firebaseObject(userRef);
-		userObj.$loaded(function(data){
-			console.log(data);
-			if(data.access_token && data.isAdmin) {
-
-				$location.path("/dash");
-				if(!$scope.$$phase) $scope.$apply();
-
-			} else if(data.access_token) {
-
-				$location.path("/home");
-				if(!$scope.$$phase) $scope.$apply();
-
-			}
-		})
-	};
 
 	$scope.slackAuth = function() {
 

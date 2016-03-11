@@ -9,7 +9,7 @@
   </nav>
 </header>
 
-<form class="form-horizontal" id="adminRestaurantForm" name="adminRestaurantForm">
+<form class="form-horizontal" id="adminRestaurantForm" name="adminRestaurantForm" ng-if="isAdmin">
   <div class="form-group" ng-class="{true: 'error'}[submitted && adminRestaurantForm.restaurantName.$invalid && adminRestaurantForm.menuURL.$invalid && adminRestaurantForm.restaurantURL.$invalid]">
     <label for="name" class="col-sm-2 control-label">Restaurant Name</label>
     <div class="col-sm-10">

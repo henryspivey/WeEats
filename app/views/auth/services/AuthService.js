@@ -8,7 +8,7 @@ angular.module("WeEats.services").service("AuthService",
 
 	var authData = firebaseUsersRef.getAuth(); // retrieves the current user, use authData.uid for storing the slack information
 
- 	var userRef = new Firebase(FIREBASE_ROOT+'/'+authData.uid);
+ 	var userRef = new Firebase(FIREBASE_ROOT+'/users/'+authData.uid);
 
 	function makeAdmin(adminStatus) {
 		userRef.update({"isAdmin":adminStatus});
@@ -16,7 +16,7 @@ angular.module("WeEats.services").service("AuthService",
 	function logout() {
 		firebaseUsersRef.unauth();
 		$location.path("#/home");
-		if(!$scope.$$phase) $scope.$apply();
+		// if(!$scope.$$phase) $scope.$apply();
 	}
 
 	return {

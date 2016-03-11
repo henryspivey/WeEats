@@ -11,7 +11,7 @@ angular.module("WeEats.controllers").controller("SlackAuthController",
 	var authData = firebaseUsersRef.getAuth(); // retrieves the current user, use authData.uid for storing the slack information
 	console.log(authData);
 
-	var userRef = new Firebase(FIREBASE_ROOT+'/'+authData.uid);
+	var userRef = new Firebase(FIREBASE_ROOT+'/users/'+authData.uid);
 	var config = {
 		"client_id": '23324292563.23327735669',
 		"client_secret": 'f75c945c04460239fdbdc9b5be119a83',

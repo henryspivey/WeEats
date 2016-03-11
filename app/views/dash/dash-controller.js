@@ -1,19 +1,25 @@
 "use strict";
 
 angular.module("WeEats.controllers").controller("DashCtrl", 
-	['FIREBASE_ROOT', '$firebaseObject', '$scope', '$interval',
-	function (FIREBASE_ROOT, $firebaseObject, $scope, $interval){
+	['FIREBASE_ROOT', '$firebaseObject', '$scope', '$interval', "SlackAuthService",
+	function (FIREBASE_ROOT, $firebaseObject, $scope, $interval, SlackAuthService){
 
 		var firebaseUsersRef = new Firebase(FIREBASE_ROOT);
 
 		var authData = firebaseUsersRef.getAuth();
-		var userRef= new Firebase(FIREBASE_ROOT+'/'+authData.uid);
+		var userRef= new Firebase(FIREBASE_ROOT+'/users/'+authData.uid);
 		$scope.user = $firebaseObject(userRef);
 
 		$scope.restaurantName, $scope.restaurantURL, $scope.menuURL, $scope.restaurantPhone = "";
 		var promise;
 
-	$scope.dateTimeNow = function() {
+		function init() {
+			SlackAuthService.access();
+		};
+		init();
+
+
+		$scope.dateTimeNow = function() {
 	    $scope.orderTime = new Date();
 	  };
 	  $scope.dateTimeNow();
@@ -76,20 +82,14 @@ angular.module("WeEats.controllers").controller("DashCtrl",
 		}
 
 		$scope.save = function() {
-			/*
-				TODO:
-				set up restaurant obj in Firebase with data from form. Collect the restaurantName, menuURL, restaurantPhone
-				restaurantURL, and orderTime
-				use these date to populate the home.html page with necessary variables.
-			*/
-			promise = $interval(remind, 5000);
+
+			//promise = $interval(remind, 5000); will need for checking user's orderStatus
 			var sanitizedDate = new Date($scope.orderTime);
 			var timeForOrder = sanitizedDate.toTimeString();
 			
 			var restaurantData  = new Firebase(FIREBASE_ROOT+'/restaurant');
 			restaurantData.update({"restaurantName":$scope.restaurantName, "menuURL":$scope.menuURL, "restaurantPhone":$scope.restaurantPhone,
 			 "restaurantURL":$scope.restaurantURL, "orderTime":timeForOrder});
-
 		}
 
 }]);

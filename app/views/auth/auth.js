@@ -4,8 +4,8 @@
 	This script will handle the user authentication and login
 */
 angular.module("WeEats.controllers").controller("AuthCtrl", 
-	['FIREBASE_ROOT', '$scope', '$location', 'SlackAuthService',
-	function (FIREBASE_ROOT, $scope, $location, SlackAuthService){
+	['FIREBASE_ROOT', '$scope', '$location', 'SlackAuthService', '$firebaseObject',
+	function (FIREBASE_ROOT, $scope, $location, SlackAuthService, $firebaseObject){
 
 		var userRef = new Firebase(FIREBASE_ROOT);
 
@@ -36,11 +36,25 @@ angular.module("WeEats.controllers").controller("AuthCtrl",
 			}, function(error, authData) {
 			  if (error) {
 			    console.log("Login Failed!", error);
-			  } else {
+			  }
+			  else {
 			    console.log("Authenticated successfully with payload:", authData);
-			
-			    $location.path('/view1');
-			    if(!$scope.$$phase) $scope.$apply();
+			    alert(authData.uid);
+					if(authData.uid) {
+						userRef = new Firebase(FIREBASE_ROOT+"/users/"+authData.uid);
+						var userObj = $firebaseObject(userRef);
+
+						if (userObj.access_token) { // they have already added slack
+							$location.path("/home");
+							if(!$scope.$$phase) $scope.$apply();
+						} else {
+							$location.path("/view1");
+							if(!$scope.$$phase) $scope.$apply();
+						}
+					} else {
+						$location.path('/view1');
+					}
+			    
 			  }
 			});
 		}

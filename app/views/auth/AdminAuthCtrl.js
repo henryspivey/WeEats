@@ -4,8 +4,8 @@
 	This script will handle the user authentication and login
 */
 angular.module("WeEats.controllers").controller("AdminAuthCtrl", 
-	['FIREBASE_ROOT', '$scope', '$location', 'SlackAuthService',
-	function (FIREBASE_ROOT, $scope, $location, SlackAuthService){
+	['FIREBASE_ROOT', '$scope', '$location', 'SlackAuthService', '$firebaseObject',
+	function (FIREBASE_ROOT, $scope, $location, SlackAuthService, $firebaseObject){
 
 		var userRef = new Firebase(FIREBASE_ROOT);
 
@@ -38,10 +38,23 @@ angular.module("WeEats.controllers").controller("AdminAuthCtrl",
 			    console.log("Login Failed!", error);
 			  } else {
 			    console.log("Authenticated successfully with payload:", authData);
-			    userRef = new Firebase(FIREBASE_ROOT + '/'+ authData.uid);
-					userRef.update({"isAdmin":true});
-			    $location.path('/view1');
-			    if(!$scope.$$phase) $scope.$apply();
+	    		if(authData.uid) {
+	    			userRef = new Firebase(FIREBASE_ROOT+"/users/"+authData.uid);
+	    			var userObj = $firebaseObject(userRef);	
+	    			console.log(userObj);
+	    			userObj.$loaded(function(data){
+	    				if (userObj.access_token) { // they have already added slack
+	    					$location.path("/home");
+	    					if(!$scope.$$phase) $scope.$apply();
+	    				} else {
+	    					$location.path("/view1");
+	    					if(!$scope.$$phase) $scope.$apply();
+	    				}
+	    			})
+	    			
+	    		} else {
+	    			$location.path('/view1');
+	    		}
 			  }
 			});
 		}
