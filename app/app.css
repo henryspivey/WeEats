@@ -248,13 +248,12 @@ nav a:hover {
   position: relative;
 }
 
+#restaurantInfo {
+  text-align: center;
+}
+
 /* styles for later for the icon depending on order status color: greenyellow;
 padding: 5px;
 vertical-align: baseline;*/
-
-
-
-
-
 
 

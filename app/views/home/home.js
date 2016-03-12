@@ -3,9 +3,9 @@
 
 angular.module("WeEats.controllers").controller("HomeCtrl",
 	['$scope','FIREBASE_ROOT','$firebaseObject', 'AuthService', 'slackSvc', 
-	'$routeParams', '$http', "SlackAuthService", "$firebaseArray", "$interval",
+	'$routeParams', '$http', "SlackAuthService", "$firebaseArray", "$timeout",
 	function($scope, FIREBASE_ROOT, $firebaseObject, AuthService, 
-		slackSvc, $routeParams, $http, SlackAuthService, $firebaseArray, $interval){
+		slackSvc, $routeParams, $http, SlackAuthService, $firebaseArray, $timeout){
 
 	var firebaseUsersRef = new Firebase(FIREBASE_ROOT);
 
@@ -52,18 +52,27 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 			redirect_uri: 'http://localhost:8000/app/#/home'
 		}
 	}
-	$scope.order = "";
+	
 
 	$scope.logout = function() {
 		AuthService.logout();
 	}
 
+	$scope.order = {
+		item: ""
+	}
+
 	$scope.submitOrder = function() {
 		//TODO 
 		/* 
-			gather date and time for key (this will be needed for record keeping)
-			store data as value to key
+			after their order has been added, then change the relevant data in firebase
+			since this is submitOrder them the boolean value of placedOrder becomes true
 		*/
+		var key = new Date().toDateString();
+		userRef.update({"placedOrder":true, "optedOut":""});
+		var orderRef= new Firebase(FIREBASE_ROOT+'/users/'+authData.uid+"/orders/"+key);
+		orderRef.update({"order":$scope.order.item});
+
 	}
 
 	function init() {
@@ -137,28 +146,26 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 	function remind() {
 		// will check if user has not submitted order after the restaurant for the day has been submitted
 		console.log("reminder");
-		// if (!$scope.user.placedOrder || !$scope.user.optedOut) { // if that data exists, then cancel the $interval
-		// 	$interval.cancel(promise);
-		// };
+		
 		var currentTime = new Date().toTimeString();
 		if (currentTime !== $scope.restaurantData.timeToOrder ) {
 			allUsersObj.$loaded(function(data) {
 				for (var i = 0; i < data.length; i++) {
+					var bool = !data[i].placedOrder;
+					console.log(i + " " + bool);
 					if(!data[i].placedOrder || !data[i].optedOut) {
-						sendRecurringSlackMessage();
+						sendReminderSlackMessage();
 					} else {
-						$interval.cancel(promise);
+						$timeout.cancel(promise);
 					}
 				};
 			});
-		}
-		
+		}	
 	}
-
 
 	$scope.save = function() {
 
-		promise = $interval(remind, 1800000); // send the reminder every thirty minutes
+		promise = $timeout(remind, 10000).then(stopSendingMessages()); // send the reminder every thirty minutes 1800000
 		var sanitizedDate = new Date($scope.orderTime);
 		var timeForOrder = sanitizedDate.toTimeString();
 		
@@ -173,7 +180,7 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 			updateUserAfterOrderSave.update({"optedOut": false, "placedOrder":false});
 		});
 
-		sendOneTimeSlackMessage($scope.restaurantData.name, timeForOrder);
+		sendOneTimeSlackMessage($scope.restaurantData.name, timeForOrder); // will send to all users 
 
 	}
 
@@ -218,7 +225,7 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 
 		}
 
-		function sendRecurringSlackMessage() {
+		function sendReminderSlackMessage() {
 			allUsersObj.$loaded(function(data) {
 				for (var i = 0; i < data.length; i++) {
 					var webhook = data[i].webhookURL;
@@ -250,6 +257,10 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 					}
 				};
 			})
+		}
+
+		function stopSendingMessages() {
+			$timeout.cancel(promise);
 		}
 
 		// end admin functions 
