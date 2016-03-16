@@ -12,10 +12,12 @@ var WeEats = angular.module('WeEats', [
   'ngMessages',
   'ui.bootstrap', 
   'ui.bootstrap.datetimepicker',
-  'telephonefilter'
+  'telephonefilter',
+  'uiGmapgoogle-maps',
+  'search-box-example'
 
 ]).
-config(['$routeProvider', function($routeProvider) {
+config(['$routeProvider', 'uiGmapGoogleMapApiProvider', function($routeProvider,uiGmapGoogleMapApiProvider) {
 
 	$routeProvider
 		.when('/slackSuccess', {
@@ -36,7 +38,17 @@ config(['$routeProvider', function($routeProvider) {
 		when('/admin', {
 			templateUrl:"views/auth/adminAuth.html",
 			controller: "AdminAuthCtrl"
+		}).when('/manual', {
+			templateUrl: "views/manual/manualentry.html",
+			controller: "HomeCtrl"
 		})
+
+
+		uiGmapGoogleMapApiProvider.configure({
+        key: 'AIzaSyCgORDE776Y_LIZGH_BPIaQA5VuU8EfUmA',
+        v: '3.20', //defaults to latest 3.X anyhow
+        libraries: 'places'
+    });
 
   //$routeProvider.otherwise({redirectTo: '/view1'});
 }])

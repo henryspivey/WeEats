@@ -10,6 +10,19 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 	var firebaseUsersRef = new Firebase(FIREBASE_ROOT);
 
 	var promise;
+	$scope.map = { center: {latitude: 37.3385803, longitude: -121.8899279}, zoom: 13 };
+	$scope.mapInput = {
+		_text: ""
+	}
+
+	// $scope.inputForMap = function($pac-input) {
+	// 	//googleMapService.googleMapChange($scope.mapInput._text);
+	// 	var ipt = $($'pac-input');
+	// 	console.log(ipt);
+	// 	googleMapService.googleMapChange(ipt);
+		
+	// }
+
 
 	var authData = firebaseUsersRef.getAuth();
 	var userRef= new Firebase(FIREBASE_ROOT+'/users/'+authData.uid);
@@ -76,7 +89,8 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 	}
 
 	function init() {
-		SlackAuthService.access()
+		SlackAuthService.access();
+		
 	}
 	init();
 
@@ -264,5 +278,7 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 		}
 
 		// end admin functions 
+
+
 
 }]);
