@@ -96,7 +96,8 @@ angular.module("search-box-example", ['uiGmapgoogle-maps'])
           var restaurant = googleMapService.restaurantObj;
           for (var i = 0, place; place = places[i]; i++) {
             // get the restaurant details and send to the googleMapService
-            restaurant.name = place.name;
+            googleMapService.restaurantObj.name = place.name;
+            $scope.restaurantName = place.name;
             if(place.international_phone_number) {
               restaurant.phone_number = place.international_phone_number
             }

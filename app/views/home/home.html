@@ -62,12 +62,12 @@
      </ui-gmap-google-map>
   
    </div>
+
+   <order-form></order-form>
  </div>
 
- <div class="order-form"></div>
- 
-    
   <section class="userList">
+    {{googleMapService.restaurantObj}}
   <header>Users</header>
   <ul class="list-unstyled">
     <li ng-repeat="user in allUsers">{{user.username}}</li>

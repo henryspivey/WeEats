@@ -22,7 +22,7 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 
 	$scope.restaurantName, $scope.restaurantURL, $scope.menuURL, $scope.restaurantPhone = "";
 
-
+	
 	// TOOD make a firebase object of the restaurant reference in firebase
 	$scope.restaurantData = {
 		name: "",
