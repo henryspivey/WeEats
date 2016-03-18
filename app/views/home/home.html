@@ -1,11 +1,9 @@
-
 <header>
  <a href="#/home"><div class="logo"></div></a>
   <nav class="headerNav">
     <ul>
       <li><a href="#/auth" ng-if="!user">Login</a></li>
      	<li><a href="#/home" ng-if="user">Welcome, {{user.username}}!</a></li>
-      <li><a href="#/manual" ng-if="user.isAdmin">Manual Entry</a></li>
      	<li ng-click="logout()"><a href="#/auth">Logout</a></li>
     </ul>
   </nav>
@@ -67,7 +65,7 @@
       </order-form>
 
       <section class="userList">
-        <header>Users</header>
+        <h3>Users</h3>
         <ul class="list-unstyled">
           <li ng-repeat="user in allUsers">{{user.username}}</li>
           <!-- <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> -->

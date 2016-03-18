@@ -7,8 +7,13 @@
 header{
   margin: 0 auto;
   padding: 5px 0 0 0; /* top -> clockwise */
-  width: 100%;
-  width: 80%;
+
+  /*width: 80%;*/
+  
+  background: -webkit-linear-gradient(#4A4A4A, #2B2B2B); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#4A4A4A, #2B2B2B); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#4A4A4A, #2B2B2B); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#4A4A4A, #2B2B2B); /* Standard syntax */;
 }
 
 header a:hover {
@@ -48,7 +53,7 @@ nav a {
 }
 
 nav a:hover {
-  color:#2b3337;
+  color:#DBDDDE;
 }
 
 .main {
