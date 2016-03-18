@@ -205,8 +205,7 @@ nav a:hover {
 }
 
 #adminRestaurantForm{
-  width: 65%;
-  left: 10%;
+  width: 100%;
 }
 
 .menuContainer {
@@ -221,20 +220,6 @@ nav a:hover {
 
 }
 
-.formanduserlist{
-  left: 10%;
-  position: relative;
-  width: 100%;
-  display: inline-flex;
-}
-
-.userList {
-  width: 20%;
-  left: 5%;
-  position: relative;
-  text-align: center;
-}
-
 .userList header {
   text-align: center;
   font-weight: bold;
@@ -242,21 +227,29 @@ nav a:hover {
 }
 
 
-.orderContainer {
-  width: 35%;
-  left:10%;
-  position: relative;
-}
-
 #restaurantInfo {
   text-align: center;
 }
 
-#searchBoxController {
-  width: 80%;
+.flexcontainer {
+   display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: row;
+   flex-direction: row;
+   
 }
 
 
+.mapcontainer {
+  -webkit-flex: 2 0 0; 
+  flex: 2 0 0;
+}
+
+#formanduserlistcontainer {
+   -webkit-flex: 1 0 0;
+   flex: 1 0 0;
+
+}
 .angular-google-map,
 .angular-google-map-container {
   height: 100vh;
@@ -283,5 +276,8 @@ nav a:hover {
 .controls:focus {
   border-color: #4d90fe;
 }
+
+
+
 
 

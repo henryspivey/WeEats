@@ -101,7 +101,7 @@ angular.module("search-box-example", ['uiGmapgoogle-maps'])
             if(place.international_phone_number) {
               $scope.phone_number = place.international_phone_number
             }
-            console.log(place);
+            
             if(place.website || place.url) {
               $scope.website = place.website || place.url;
             }
