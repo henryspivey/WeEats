@@ -5,11 +5,11 @@ var googleMapService = angular.module("googleMapService", []);
 googleMapService.factory("googleMapService", function(){
 
 	var restaurant = {
+		menuURL: "",
+		orderTime:"",
 		name: "",
 		phone_number: "",
-		website: "",
-		menuURL: "",
-		orderTime:""
+		website: ""
 	}
 
 	return {

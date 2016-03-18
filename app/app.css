@@ -1,6 +1,7 @@
 /* app css stylesheet */
 * {
   box-sizing:border-box;
+  font-family: 'Lato', sans-serif;
 }
 
 header{
@@ -39,8 +40,6 @@ header a:hover {
 
 nav li {
   display: inline-block;
-  font-family: 'Raleway', sans-serif;
-
 }
 
 nav a {
@@ -226,6 +225,10 @@ nav a:hover {
   font-size:16px;
 }
 
+.userList {
+  text-align: center;
+}
+
 
 #restaurantInfo {
   text-align: center;
@@ -236,9 +239,7 @@ nav a:hover {
    display: flex;
    -webkit-flex-direction: row;
    flex-direction: row;
-   
 }
-
 
 .mapcontainer {
   -webkit-flex: 2 0 0; 
@@ -248,6 +249,7 @@ nav a:hover {
 #formanduserlistcontainer {
    -webkit-flex: 1 0 0;
    flex: 1 0 0;
+   padding:10px;
 
 }
 .angular-google-map,

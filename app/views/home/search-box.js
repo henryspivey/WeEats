@@ -97,13 +97,15 @@ angular.module("search-box-example", ['uiGmapgoogle-maps'])
           for (var i = 0, place; place = places[i]; i++) {
             // get the restaurant details and send to the googleMapService
             $scope.restaurantName = place.name;
-
+            googleMapService.restaurantObj.name = $scope.restaurantName;
             if(place.international_phone_number) {
-              $scope.phone_number = place.international_phone_number
+              $scope.phone_number = place.international_phone_number;
+              googleMapService.restaurantObj.phone_number = $scope.phone_number;
             }
             
             if(place.website || place.url) {
               $scope.website = place.website || place.url;
+              googleMapService.restaurantObj.website = $scope.website;
             }
             // Create a marker for each place.
             var marker = {

@@ -10,7 +10,7 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 	var firebaseUsersRef = new Firebase(FIREBASE_ROOT);
 
 	var promise;
-	$scope.map = { center: {latitude: 37.3385803, longitude: -121.8899279}, zoom: 13 };
+	$scope.map = { center: {latitude: 37.3385803, longitude: -121.8899279}, zoom: 8 };
 
 	var authData = firebaseUsersRef.getAuth();
 	var userRef= new Firebase(FIREBASE_ROOT+'/users/'+authData.uid);
@@ -22,7 +22,7 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 
 	$scope.restaurantName, $scope.restaurantURL, $scope.menuURL, $scope.restaurantPhone = "";
 
-	
+
 	// TOOD make a firebase object of the restaurant reference in firebase
 	$scope.restaurantData = {
 		name: "",
@@ -78,7 +78,6 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 
 	function init() {
 		SlackAuthService.access();
-		
 	}
 	init();
 
@@ -170,10 +169,11 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 		promise = $timeout(remind, 10000).then(stopSendingMessages()); // send the reminder every thirty minutes 1800000
 		var sanitizedDate = new Date($scope.orderTime);
 		var timeForOrder = sanitizedDate.toTimeString();
+	
 		
 		var restaurantData  = new Firebase(FIREBASE_ROOT+'/restaurant');
-		restaurantData.update({"restaurantName":$scope.restaurantData.name, "menuURL":$scope.restaurantData.menuURL, "restaurantPhone":$scope.restaurantPhone,
-		 "restaurantURL":$scope.restaurantData.restaurantURL, "orderTime":timeForOrder});
+		restaurantData.update({"restaurantName": googleMapService.restaurantObj.name, "menuURL":googleMapService.restaurantObj.menuURL, "restaurantPhone":$scope.restaurantPhone,
+		 "restaurantURL":googleMapService.restaurantObj.website, "orderTime":timeForOrder, "restaurantPhone":googleMapService.restaurantObj.phone_number});
 
 		allUsersObj.$loaded(function(data) {
 			// make a new firebase reference for each user with $id and call .update{"optedOut": false, "placedOrder":false}
@@ -182,7 +182,7 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 			updateUserAfterOrderSave.update({"optedOut": false, "placedOrder":false});
 		});
 
-		sendOneTimeSlackMessage($scope.restaurantData.name, timeForOrder); // will send to all users 
+		// sendOneTimeSlackMessage($scope.restaurantData.name, timeForOrder); // will send to all users 
 
 	}
 
