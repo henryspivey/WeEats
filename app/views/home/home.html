@@ -33,14 +33,8 @@
 	</div>
 
 </section>
-
-
 <section class="container" ng-if="user.isAdmin">
-    
-  <!-- <input id="pac-input" class="controls" type="text" ng-model="mapInput._text" placeholder="Enter a location" ng-change="inputForMap()">
-    <ui-gmap-google-map center='map.center' zoom='map.zoom'></ui-gmap-google-map>
- -->
-
+  
  <div ng-controller="SearchBoxController" id="searchBoxController">
    <div id="searchBoxParent"></div>
    <div>
@@ -55,12 +49,7 @@
              control="map.control"
              >
        <!--to add as a map control -->
-       <ui-gmap-search-box options="searchbox.options" template="searchbox.template"
-                       events="searchbox.events" position="searchbox.position"></ui-gmap-search-box>
-
-       <!--to add to a parent div-->
-       <!-- <ui-gmap-search-box options="searchbox.options" template="searchbox.template" events="searchbox.events" parentdiv="searchbox.parentdiv"></ui-gmap-search-box> -->
-
+       <ui-gmap-search-box options="searchbox.options" template="searchbox.template" events="searchbox.events" position="searchbox.position"></ui-gmap-search-box>
 
        <ui-gmap-markers idkey="map.idkey" models="map.markers" coords="'self'" icon="'icon'"
                         click="'onClicked'"></ui-gmap-markers>
@@ -71,10 +60,11 @@
        </ui-gmap-window>
 
      </ui-gmap-google-map>
-       <button type="button" ng-click="toggleMap()">Toggle Visibility</button>
-       <span ng-bind="searchbox.options.visible"></span>
+  
    </div>
  </div>
+
+ <div class="order-form"></div>
  
     
   <section class="userList">

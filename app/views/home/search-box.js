@@ -12,20 +12,15 @@ angular.module("search-box-example", ['uiGmapgoogle-maps'])
   }
 })
 
-.controller("SearchBoxController",['$scope', '$timeout', 'uiGmapLogger', '$http','uiGmapGoogleMapApi'
-    , function ($scope, $timeout, $log, $http, GoogleMapApi) {
+.controller("SearchBoxController",['$scope', '$timeout', 'uiGmapLogger', '$http','uiGmapGoogleMapApi', 'googleMapService'
+    , function ($scope, $timeout, $log, $http, GoogleMapApi, googleMapService) {
   $log.doLog = true
-
-  $scope.toggleMap = function () {
-    $scope.searchbox.options.visible = !$scope.searchbox.options.visible
-  }
 
   GoogleMapApi.then(function(maps) {
     maps.visualRefresh = true;
     $scope.defaultBounds = new google.maps.LatLngBounds(
       new google.maps.LatLng(37.3385803,-121.8912776),
       new google.maps.LatLng(37.3385803,-121.8912776));
-
 
     $scope.map.bounds = {
       northeast: {
@@ -98,7 +93,16 @@ angular.module("search-box-example", ['uiGmapgoogle-maps'])
           // For each place, get the icon, place name, and location.
           newMarkers = [];
           var bounds = new google.maps.LatLngBounds();
+          var restaurant = googleMapService.restaurantObj;
           for (var i = 0, place; place = places[i]; i++) {
+            // get the restaurant details and send to the googleMapService
+            restaurant.name = place.name;
+            if(place.international_phone_number) {
+              restaurant.phone_number = place.international_phone_number
+            }
+            if(place.website) {
+              restaurant.website = place.website
+            }
             // Create a marker for each place.
             var marker = {
               idKey:i,

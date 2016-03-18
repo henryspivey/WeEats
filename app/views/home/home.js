@@ -3,26 +3,14 @@
 
 angular.module("WeEats.controllers").controller("HomeCtrl",
 	['$scope','FIREBASE_ROOT','$firebaseObject', 'AuthService', 'slackSvc', 
-	'$routeParams', '$http', "SlackAuthService", "$firebaseArray", "$timeout",
+	'$routeParams', '$http', 'SlackAuthService', '$firebaseArray', '$timeout', 'googleMapService',
 	function($scope, FIREBASE_ROOT, $firebaseObject, AuthService, 
-		slackSvc, $routeParams, $http, SlackAuthService, $firebaseArray, $timeout){
+		slackSvc, $routeParams, $http, SlackAuthService, $firebaseArray, $timeout, googleMapService){
 
 	var firebaseUsersRef = new Firebase(FIREBASE_ROOT);
 
 	var promise;
 	$scope.map = { center: {latitude: 37.3385803, longitude: -121.8899279}, zoom: 13 };
-	$scope.mapInput = {
-		_text: ""
-	}
-
-	// $scope.inputForMap = function($pac-input) {
-	// 	//googleMapService.googleMapChange($scope.mapInput._text);
-	// 	var ipt = $($'pac-input');
-	// 	console.log(ipt);
-	// 	googleMapService.googleMapChange(ipt);
-		
-	// }
-
 
 	var authData = firebaseUsersRef.getAuth();
 	var userRef= new Firebase(FIREBASE_ROOT+'/users/'+authData.uid);

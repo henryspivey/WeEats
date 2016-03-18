@@ -14,7 +14,9 @@ var WeEats = angular.module('WeEats', [
   'ui.bootstrap.datetimepicker',
   'telephonefilter',
   'uiGmapgoogle-maps',
-  'search-box-example'
+  'googleMapService',
+  'search-box-example',
+  'orderformdirective'
 
 ]).
 config(['$routeProvider', 'uiGmapGoogleMapApiProvider', function($routeProvider,uiGmapGoogleMapApiProvider) {
