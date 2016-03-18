@@ -20,7 +20,7 @@
   <div class="form-group">
     <label for="phone" class="col-sm-2 control-label">Restaurant Phone</label>
     <div class="col-sm-10">
-      <input type="tel" class="form-control" id="phone" phone-input placeholder="Restaurant Phone" name="restaurantPhone" ng-model="restaurantData.phone" required>
+      <input type="tel" class="form-control" id="phone" phone-input placeholder="Restaurant Phone" name="restaurantPhone" ng-model="phone_number" required>
       
       <span class="help-inline" ng-show="submitted && adminRestaurantForm.restaurantPhone.$error.required">Required</span>
       <span class="help-inline" ng-show="submitted && adminRestaurantForm.restaurantPhone.$error.phone">Invalid Phone</span>
@@ -29,7 +29,7 @@
   <div class="form-group">
     <label for="restaurantURL" class="col-sm-2 control-label">Restaurant URL</label>
     <div class="col-sm-10">
-      <input type="url" class="form-control" id="restaurantURL" name="restaurantURL" placeholder="Restaurant URL" ng-model="restaurantData.restaurantURL" required/>
+      <input type="url" class="form-control" id="restaurantURL" name="restaurantURL" placeholder="Restaurant URL" ng-model="website" required/>
       <span class="help-inline" ng-show="submitted && adminRestaurantForm.restaurantURL.$error.required">Required</span>
       <span class="help-inline" ng-show="submitted && adminRestaurantForm.restaurantURL.$error.url">Invalid URL</span>
     </div>

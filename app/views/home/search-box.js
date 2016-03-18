@@ -93,16 +93,17 @@ angular.module("search-box-example", ['uiGmapgoogle-maps'])
           // For each place, get the icon, place name, and location.
           newMarkers = [];
           var bounds = new google.maps.LatLngBounds();
-          var restaurant = googleMapService.restaurantObj;
+          
           for (var i = 0, place; place = places[i]; i++) {
             // get the restaurant details and send to the googleMapService
-            googleMapService.restaurantObj.name = place.name;
             $scope.restaurantName = place.name;
+
             if(place.international_phone_number) {
-              restaurant.phone_number = place.international_phone_number
+              $scope.phone_number = place.international_phone_number
             }
-            if(place.website) {
-              restaurant.website = place.website
+            console.log(place);
+            if(place.website || place.url) {
+              $scope.website = place.website || place.url;
             }
             // Create a marker for each place.
             var marker = {
