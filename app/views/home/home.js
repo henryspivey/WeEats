@@ -3,9 +3,9 @@
 
 angular.module("WeEats.controllers").controller("HomeCtrl",
 	['$scope','FIREBASE_ROOT','$firebaseObject', 'AuthService', 'slackSvc', 
-	'$routeParams', '$http', 'SlackAuthService', '$firebaseArray', '$timeout', 'googleMapService',
+	'$routeParams', '$http', 'SlackAuthService', '$firebaseArray', '$timeout', 'googleMapService', '$sce',
 	function($scope, FIREBASE_ROOT, $firebaseObject, AuthService, 
-		slackSvc, $routeParams, $http, SlackAuthService, $firebaseArray, $timeout, googleMapService){
+		slackSvc, $routeParams, $http, SlackAuthService, $firebaseArray, $timeout, googleMapService, $sce){
 
 	var firebaseUsersRef = new Firebase(FIREBASE_ROOT);
 
@@ -40,6 +40,7 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 			$scope.restaurantData.name = restaurantData.restaurantName;
 			$scope.restaurantData.phonenumber = restaurantData.restaurantPhone;
 			$scope.restaurantData.website = restaurantData.restaurantURL;
+			$scope.restaurantData.restaurantMenuURL = $sce.trustAsResourceUrl(restaurantData.menuURL);
 		});
 	}
 

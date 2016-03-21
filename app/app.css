@@ -212,13 +212,8 @@ nav a:hover {
   width: 100%;
 }
 
-.menuContainer {
-  width: 45%;
-  left:5%;
-  position: relative;
-}
 
-.container, .order {
+.container {
   display:inline-flex;
   width: 100%;
 
@@ -246,16 +241,20 @@ nav a:hover {
    flex-direction: row;
 }
 
-.mapcontainer {
+.mapcontainer, .menuContainer {
   -webkit-flex: 2 0 0; 
   flex: 2 0 0;
 }
 
-#formanduserlistcontainer {
+#formanduserlistcontainer, .orderContainer {
    -webkit-flex: 1 0 0;
    flex: 1 0 0;
    padding:10px;
 
+}
+.menuIframe {
+  width: 100%;
+  height:100vh;
 }
 .angular-google-map,
 .angular-google-map-container {
