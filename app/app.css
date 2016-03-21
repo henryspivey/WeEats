@@ -255,6 +255,7 @@ nav a:hover {
 .menuIframe {
   width: 100%;
   height:100vh;
+  border:0;
 }
 .angular-google-map,
 .angular-google-map-container {
