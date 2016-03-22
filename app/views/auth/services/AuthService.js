@@ -15,7 +15,7 @@ angular.module("WeEats.services").service("AuthService",
 	}
 	function logout() {
 		firebaseUsersRef.unauth();
-		$location.path("#/home");
+		$location.path("#/auth");
 		// if(!$scope.$$phase) $scope.$apply();
 	}
 

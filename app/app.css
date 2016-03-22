@@ -285,6 +285,12 @@ nav a:hover {
 }
 
 
+.ordered {
+  color:green;
+}
+.notOrdered {
+  color:red;
+}
 
 
 
