@@ -17,7 +17,7 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 	$scope.user = $firebaseObject(userRef); // make the user information available to the scope
 
 	var allUsers = new Firebase(FIREBASE_ROOT+'/users/');
-	var allUsersObj = $firebaseArray(allUsers);
+	var allUsersObj = $firebaseArray(allUsers); // makes an asynchronous array holding all of the users
 	$scope.allUsers = allUsersObj;
 
 	$scope.restaurantName, $scope.restaurantURL, $scope.menuURL, $scope.restaurantPhone = "";
@@ -173,7 +173,7 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 	
 		
 		var restaurantData  = new Firebase(FIREBASE_ROOT+'/restaurant');
-		restaurantData.update({"restaurantName": googleMapService.restaurantObj.name, "menuURL":googleMapService.restaurantObj.menuURL, "restaurantPhone":$scope.restaurantPhone,
+		restaurantData.update({"restaurantName": googleMapService.restaurantObj.name, "menuURL":googleMapService.restaurantObj.menuURL || $scope.restaurantData.menuURL, "restaurantPhone":$scope.restaurantPhone,
 		 "restaurantURL":googleMapService.restaurantObj.website, "orderTime":timeForOrder, "restaurantPhone":googleMapService.restaurantObj.phone_number});
 
 		allUsersObj.$loaded(function(data) {
