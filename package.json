@@ -1,8 +1,8 @@
 {
   "name": "angular-seed",
   "private": true,
-  "version": "0.0.0",
   "description": "A starter project for AngularJS",
+  "version": "1.0.0",
   "repository": "https://github.com/angular/angular-seed",
   "license": "MIT",
   "devDependencies": {
@@ -18,7 +18,7 @@
     "shelljs": "^0.2.6"
   },
   "scripts": {
-    "postinstall": "/usr/local/bin/bower install",
+    "postinstall": "bower install",
     "prestart": "npm install",
     "start": "http-server -a localhost -p 8000 -c-1",
     "pretest": "npm install",
