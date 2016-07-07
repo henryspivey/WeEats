@@ -14,7 +14,7 @@ angular.module("WeEats.services").factory("SlackAuthService",
 	function access() {
 
 		var authData = firebaseUsersRef.getAuth(); // retrieves the current user, use authData.uid for storing the slack information
-		console.log(authData);
+		
 
 		var userRef = new Firebase(FIREBASE_ROOT+'/users/'+authData.uid);
 		if ($routeParams) {

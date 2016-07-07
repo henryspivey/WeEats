@@ -26,11 +26,11 @@ angular.module('WeEats.view1', ['ngRoute'])
 			authParams : {
 				client_id: '23324292563.23327735669',
 				scope: 'incoming-webhook',
-				redirect_uri: 'http://localhost:8000/app/#/home'
+				redirect_uri: 'https://weeats-d7579.firebaseapp.com/#/home/'
 			}
 		}
-
 		slackSvc.authorize(config.client_id, config.authParams, function (response) {
+
 			console.log(response)
 		});
 	}

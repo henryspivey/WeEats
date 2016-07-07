@@ -19,9 +19,14 @@ var WeEats = angular.module('WeEats', [
   'orderformdirective'
 
 ]).
-config(['$routeProvider', 'uiGmapGoogleMapApiProvider', function($routeProvider,uiGmapGoogleMapApiProvider) {
+config(['$routeProvider', 'uiGmapGoogleMapApiProvider', 
+	function($routeProvider,uiGmapGoogleMapApiProvider) {
 
 	$routeProvider
+		.when('/',{
+			templateUrl:'views/view1/view1.html',
+			controller: 'View1Ctrl'
+		})
 		.when('/slackSuccess', {
     	controller: 'SlackAuthController',
     	templateUrl:'views/home/home.html'
