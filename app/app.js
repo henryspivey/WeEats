@@ -51,11 +51,11 @@ config(['$routeProvider', 'uiGmapGoogleMapApiProvider',
 		})
 
 
-		uiGmapGoogleMapApiProvider.configure({
-        key: 'AIzaSyCgORDE776Y_LIZGH_BPIaQA5VuU8EfUmA',
-        v: '3.20', //defaults to latest 3.X anyhow
-        libraries: 'places'
-    });
+		// uiGmapGoogleMapApiProvider.configure({
+  //       key: 'AIzaSyDpIQlcX29YeFL80UbjRT48qwrn-S4705A',
+  //       v: '3.20', //defaults to latest 3.X anyhow
+  //       libraries: 'places'
+  //   });
 
   //$routeProvider.otherwise({redirectTo: '/view1'});
 }])

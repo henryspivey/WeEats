@@ -19,9 +19,6 @@ angular.module("WeEats.services").factory("SlackAuthService",
 		var userRef = new Firebase(FIREBASE_ROOT+'/users/'+authData.uid);
 		if ($routeParams) {
 			slackSvc.oauth.access(config.client_id, config.client_secret, $routeParams.code, function (response) {
-				alert("Hello");
-				console.log(response);
-				console.log($routeParams);
 				var webhookURL = response.incoming_webhook.url;
 
 				if(response.ok){
@@ -33,6 +30,8 @@ angular.module("WeEats.services").factory("SlackAuthService",
 					}).then(function successCallback(response){
 							console.log("Success ", response);
 							userRef.update({"access_token":access_token, "webhookURL":webhookURL, username:response.data.user});
+							$location.url("/home/");
+							// if(!$scope.$$phase) $scope.$apply();
 					}, function errorCallback(response){
 						console.log("error ", response);
 					});
