@@ -19,6 +19,9 @@ angular.module("WeEats.services").factory("SlackAuthService",
 		var userRef = new Firebase(FIREBASE_ROOT+'/users/'+authData.uid);
 		if ($routeParams) {
 			slackSvc.oauth.access(config.client_id, config.client_secret, $routeParams.code, function (response) {
+				alert("Hello");
+				console.log(response);
+				console.log($routeParams);
 				var webhookURL = response.incoming_webhook.url;
 
 				if(response.ok){

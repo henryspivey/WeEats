@@ -51,7 +51,7 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 		authParams : {
 			client_id: '23324292563.23327735669',
 			scope: 'incoming-webhook',
-			redirect_uri: 'https://weeats-d7579.firebaseapp.com/app/#/home'
+			redirect_uri: 'https://weeats-d7579.firebaseapp.com/#/home'
 		}
 	}
 	
@@ -208,7 +208,7 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 						            "fallback": "Order lunch now!",
 						            "title": name,
 						            "pretext": "Order lunch now!",
-						            "text": "Order by: *" +time+"!*\n <https://weeats-d7579.firebaseapp.com/app/#/home|Click here> to order!",
+						            "text": "Order by: *" +time+"!*\n <https://weeats-d7579.firebaseapp.com/#/home|Click here> to order!",
 						            "mrkdwn_in": [
 						                "text",
 						                "pretext"
@@ -243,7 +243,7 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 							            "fallback": "Remember to order lunch!",
 							            "title": "Remember to order lunch!",
 							            "pretext": "Order lunch now!",
-							            "text": "<https://weeats-d7579.firebaseapp.com/app/#/home|Click here> to order!",
+							            "text": "<https://weeats-d7579.firebaseapp.com/#/home|Click here> to order!",
 							            "mrkdwn_in": [
 							                "text",
 							                "pretext"
