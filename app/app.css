@@ -61,7 +61,7 @@ nav a:hover {
   width: 100%;
   
   background-size: cover;
-  height: 750px;
+  height: 100vh;
   max-height:750px;
   background: 
   linear-gradient(
