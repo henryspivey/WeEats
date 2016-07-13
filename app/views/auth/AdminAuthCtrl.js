@@ -21,6 +21,7 @@ angular.module("WeEats.controllers").controller("AdminAuthCtrl",
 			}, function(error, userData) {
 			  if (error) {
 			    console.log("Error creating user:", error);
+			    alert(error.toString());
 			  } else {
 			    console.log("Successfully created user account with uid:", userData.uid);
 			    //SlackAuthService.authorize();
@@ -36,12 +37,12 @@ angular.module("WeEats.controllers").controller("AdminAuthCtrl",
 			}, function(error, authData) {
 			  if (error) {
 			    console.log("Login Failed!", error);
+			    alert("Login Failed! "+ error.toString());
 			  } else {
 			    console.log("Authenticated successfully with payload:", authData);
 	    		if(authData.uid) {
 	    			userRef = new Firebase(FIREBASE_ROOT+"/users/"+authData.uid);
-	    			var userObj = $firebaseObject(userRef);	
-	    			console.log(userObj);
+	    			var userObj = $firebaseObject(userRef);		    			
 	    			userObj.$loaded(function(data){
 	    				if (userObj.access_token) { // they have already added slack
 	    					$location.path("/home");
