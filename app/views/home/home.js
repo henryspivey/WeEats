@@ -183,7 +183,7 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 			updateUserAfterOrderSave.update({"optedOut": false, "placedOrder":false});
 		});
 
-		sendOneTimeSlackMessage($scope.restaurantData.name, timeForOrder); // will send to all users 
+		sendOneTimeSlackMessage(googleMapService.restaurantObj.name, timeForOrder); // will send to all users		
 
 	}
 
