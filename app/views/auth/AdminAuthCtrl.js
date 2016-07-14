@@ -37,7 +37,7 @@ angular.module("WeEats.controllers").controller("AdminAuthCtrl",
 			}, function(error, authData) {
 			  if (error) {
 			    console.log("Login Failed!", error);
-			    alert("Login Failed! "+ error.toString());
+			    alert(error.toString());
 			  } else {
 			    console.log("Authenticated successfully with payload:", authData);
 	    		if(authData.uid) {

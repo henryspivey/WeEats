@@ -10,7 +10,7 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 	var firebaseUsersRef = new Firebase(FIREBASE_ROOT);
 
 	var promise;
-	$scope.map = { center: {latitude: 37.3385803, longitude: -121.8899279}, zoom: 8 };
+	$scope.map = { center: {latitude: 37.3385803, longitude: -121.8899279}, zoom: 15 };
 
 	var authData = firebaseUsersRef.getAuth();
 	var userRef= new Firebase(FIREBASE_ROOT+'/users/'+authData.uid);
@@ -185,6 +185,12 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 
 		sendOneTimeSlackMessage($scope.restaurantData.name, timeForOrder); // will send to all users 
 
+	}
+
+	$scope.saveThisRestaurant = function() {
+		var restaurantData  = new Firebase(FIREBASE_ROOT+'/restaurants');
+		restaurantData.child(googleMapService.restaurantObj.name).update({"restaurantName": googleMapService.restaurantObj.name, "menuURL":googleMapService.restaurantObj.menuURL || $scope.restaurantData.menuURL, "restaurantPhone":$scope.restaurantPhone,
+		 "restaurantURL":googleMapService.restaurantObj.website, "restaurantPhone":googleMapService.restaurantObj.phone_number});
 	}
 
 	function sendOneTimeSlackMessage(name, time) {

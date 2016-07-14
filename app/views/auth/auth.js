@@ -21,7 +21,7 @@ angular.module("WeEats.controllers").controller("AuthCtrl",
 			}, function(error, userData) {
 			  if (error) {
 			    console.log("Error creating user:", error);
-			    alert("Error creating your account", error)
+			    alert(error.toString());
 			  } else {
 			    console.log("Successfully created user account with uid:", userData.uid);
 			    //SlackAuthService.authorize();
@@ -37,7 +37,7 @@ angular.module("WeEats.controllers").controller("AuthCtrl",
 			}, function(error, authData) {
 			  if (error) {
 			    console.log("Login Failed!", error);
-			    alert("Login Failed", error);
+			    alert(error.toString());
 			  } else {
 			    console.log("Authenticated successfully with payload:", authData);
 	    		if(authData.uid) {
