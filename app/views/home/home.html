@@ -69,7 +69,11 @@
       <section class="userList">
         <h3>Users</h3>
         <ul class="list-unstyled">
-          <li ng-repeat="user in allUsers" ng-class="{'ordered': user.placedOrder == true, 'notOrdered': user.placedOrder == 'false'}">{{user.username}}</li>
+          <li ng-repeat="user in allUsers" ng-class="{'ordered': user.placedOrder == true, 'notOrdered': user.placedOrder == 'false'}">{{user.username}}
+            <ul ng-if="orders">
+              <li ng-repeat="order in orders" ng-if="order.customer == user.$id">{{order.order}}</li>
+            </ul>
+          </li>
           <!-- <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> -->
         </ul>
       </section>

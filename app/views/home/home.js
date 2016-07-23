@@ -17,11 +17,22 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 	$scope.user = $firebaseObject(userRef); // make the user information available to the scope
 
 	var allUsers = new Firebase(FIREBASE_ROOT+'/users/');
+
+
+	// for submitting tracking orders
+	var datekey = new Date().toDateString();
+	var orderRef= new Firebase(FIREBASE_ROOT+"/orders/"+datekey);
+	orderRef.on("child_added",function(){
+		$scope.orders = loadOrders(orderRef);	
+	})
+
 	var allUsersObj = $firebaseArray(allUsers); // makes an asynchronous array holding all of the users
 	$scope.allUsers = allUsersObj;
 
 	$scope.restaurantName, $scope.restaurantURL, $scope.menuURL, $scope.restaurantPhone = "";
 
+	// needed for displaying today's order 
+	$scope.currentDate = new Date().toDateString();
 
 	// TOOD make a firebase object of the restaurant reference in firebase
 	$scope.restaurantData = {
@@ -69,11 +80,9 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 		/* 
 			after their order has been added, then change the relevant data in firebase
 			since this is submitOrder them the boolean value of placedOrder becomes true
-		*/
-		var key = new Date().toDateString();
-		userRef.update({"placedOrder":true, "optedOut":""});
-		var orderRef= new Firebase(FIREBASE_ROOT+'/users/'+authData.uid+"/orders/"+key);
-		orderRef.update({"order":$scope.order.item});
+		*/		
+		userRef.update({"placedOrder":true, "optedOut":false});
+		orderRef.push().set({"customer":authData.uid, "order":$scope.order.item});
 
 	}
 
@@ -150,7 +159,7 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 		console.log("reminder");
 		
 		var currentTime = new Date().toTimeString();
-		if (currentTime !== $scope.restaurantData.timeToOrder ) {
+		if (currentTime !== $scope.restaurantData.timeToOrder) {
 			allUsersObj.$loaded(function(data) {
 				for (var i = 0; i < data.length; i++) {
 					var bool = !data[i].placedOrder;
@@ -162,7 +171,8 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 					}
 				};
 			});
-		}	
+		}
+			
 	}
 
 	$scope.save = function() {
@@ -272,6 +282,10 @@ angular.module("WeEats.controllers").controller("HomeCtrl",
 			$timeout.cancel(promise);
 		}
 
+
+		function loadOrders(ref) {
+			return $firebaseArray(ref);
+		}
 		// end admin functions 
 
 
